@@ -1,0 +1,213 @@
+// Breakpoints
+$breakpoint-m: 768px;
+$breakpoint-t: 1024px;
+$breakpoint-pc_h: 1460px;
+$breakpoint-pc_bm: 1800px;
+
+
+// mobile width
+$m-width : 800px;
+
+//Font
+$font: 'Noto Sans KR', sans-serif;
+$font_tit: 'Montserrat';
+@mixin fa {
+    font-family: "Font Awesome 6 Free";
+    font-weight: bold;
+}
+
+
+@mixin mobile {
+    @media (max-width: #{$m-width}) {
+        @content;
+    }
+}
+
+
+
+/* colors */
+$colors: (
+    _key: #81D8CF,
+    _key2: #8EDDD5,
+    _key3: #9BE1DA,
+    _key4: #B5E9E4,
+    _key5: #89fef2,
+    _line: #DDDDDD,
+    _bg: #F9F9F9,
+    _bg_grey: #EFEFEF,
+    _bg_grey2: #f4f4f4,
+    _blue: #0085FF,
+    _navy: #005AAD,
+    _sky: #a1b9ff,
+    _red: #FF5C5C,
+    _red2: #e51818,
+    _lblue: #63c1fc,
+    _orange: #FF7A00,
+    _green: #3b855d,
+    _green2: #48a171,
+    _yellow: #ffc107,
+    _purple: #8856f3,
+    _lightGrey: #aaa,
+    _midGrey: #777,
+    _solidGrey: #393939,
+    _grey:#999
+    //_tp : transparent
+);
+
+$c_key : map-get($colors, _key);
+$c_key2 : map-get($colors, _key2);
+$c_key3 : map-get($colors, _key3);
+$c_key4 : map-get($colors, _key4);
+$c_key5 : map-get($colors, _key5);
+$c_line : map-get($colors, _line);
+$c_bg : map-get($colors, _bg);
+
+
+
+// colors
+@each $key, $color in $colors {
+    .fc#{$key} {
+        color: $color;
+    }
+    .bg#{$key} {
+        background-color: $color;
+    } 
+}
+
+
+@for $i from 1 through 100 {
+    $w : 10*$i;
+    .w_#{$w} {
+        width: #{$w}px;
+        max-width: 100%;
+    }
+    .mw_#{$w} {
+        width: #{$w}px;
+        max-width: 100%;
+    }
+    .h_#{$w} {
+        height: #{$w}px;
+    
+    }
+}
+
+@mixin list_col($col ,$gapX:12px, $gapY:20px){
+    .col_#{$col} {
+        gap: $gapY $gapX;
+        .col_item {
+            width: calc((100% / $col) - ((($col - 1)/$col)*$gapX));
+        }
+    }
+}
+@for $i from 1 through 10 {
+    @include list_col($i ,12px, 20px);
+} 
+
+@mixin flex_box($gap:10px, $wrap:wrap, $align:null ,$justify:null){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+    flex-wrap: $wrap;
+}
+.d_flex {
+    display: flex;
+    @for $i from 1 through 30 {
+        &._gap#{$i} {
+            gap : #{$i}px
+        } 
+        &._gapX#{$i} {
+            column-gap : #{$i}px;
+        } 
+        &._gapY#{$i} {
+            row-gap : #{$i}px
+        } 
+    } 
+    &.fw_w {
+        flex-wrap: wrap;
+    }
+    &.ai_t {
+        align-items: flex-start;
+    }
+    &.ai_c {
+        align-items: center;
+    }
+    &.ai_b {
+        align-items: flex-end;
+    }
+    &.jc_l {
+        justify-content: flex-start;
+    }
+    &.jc_c {
+        justify-content: center;
+    }
+    &.jc_sa {
+        justify-content: space-around;
+    }
+    &.jc_sb {
+        justify-content: space-between;
+    }
+    &.jc_fe {
+        justify-content: flex-end;
+    }
+    .flex1 {
+        flex: 1;
+    }
+    .shrink0 {
+        flex-shrink: 0;
+    }
+    .self_top {
+        align-self: flex-start;
+    }
+    .self_c {
+        align-self: center;
+    }
+    .self_bot {
+        align-self: flex-end;
+    }
+    &.ty_col {
+        flex-direction: column;
+    }
+}
+
+
+.ml_auto {
+    margin-left: auto;
+}
+.mr_auto {
+    margin-right: auto;
+}
+.taL {
+    text-align: left;
+}
+.taC {
+    text-align: center;
+}
+.taR {
+    text-align: right;
+}
+
+.fwB {
+    font-weight: bold;
+}
+.fwM {
+    font-weight: 500;
+}
+.no_select {
+    user-select: none;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+    filter: alpha(opacity=7);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.w100 {
+    width: 100%;
+}
+.posR {
+    position: relative;
+}
